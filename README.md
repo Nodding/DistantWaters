@@ -28,8 +28,13 @@ What you really need to know is that **App.vue** is basically our html body tag.
 I am a fan of the Single File Component structure. The majority of the project will be written in the `src/components` folder where components are stored. Each file directly coresponds to a single kind of HTML element.
 
 #### Explaining Vue
-> with direct integration into Vue. Google told me it was the most popular one so it was the one that I used.
 
+Having a component library based framework is important due to the ease at which additional libraries can be imported and used. Vue and React are the two most popular ones. I believe Vue is significantly easier to understand than React, and even more Open Source. Vue is the main framework of the frontend of this project. In all technicality, this is a **Vite** app.  [https://vitejs.dev/](Vite) is the tool the Vue uses in order to introduce TypeScript into the environment.
+
+#### Explaining Phaser
+
+[https://www.npmjs.com/package/phaser](Phaser) is an HTML5 based 2D game engine with direct integration into Vue. Google told me it was the most popular one so it was the one that I used.
+with direct integration into Vue. Google told me it was the most popular one so it was the one that I used.
 #### Explaining Pinia
 
 [https://pinia.vuejs.org/](Pinia) is a state management tool that is directly integrated with, and therefore heavily encouraged to use with, Vue. When the project is using Single File Component structure, it becomes very important to figure out how to access and update shared values across all of those components. Pinia solves that problem.
