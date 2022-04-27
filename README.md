@@ -1,6 +1,6 @@
 # Distant Waters
 
-Distant Waters is a wonderful turn based strategy game created by Lucca Cioffi ([https://www.linkedin.com/in/lucca-cioffi-3aa8b1192](LinkedIn)). In the game up to four players compete as greedy ships trying to collect as much gold as possible before the game ends.
+Distant Waters is a wonderful turn based strategy game created by Lucca Cioffi ([https://github.com/Nodding/](Github)). In the game up to four players compete as greedy ships trying to collect as much gold as possible before the game ends.
 
 ## Developer Stuff
 
