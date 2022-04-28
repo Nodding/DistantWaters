@@ -1,26 +1,25 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
+import TheGame from "./components/TheGame.vue";
+import Phaser from "phaser";
+import Game from "phaser";
 </script>
 
 <template>
   <header>
     <img
-      alt="Vue logo"
+      alt="Our logo"
       class="logo"
-      src="./assets/logo.svg"
+      src="./assets/ship.svg"
       width="125"
       height="125"
     />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <TheGame msg="Look Johnny Boy" />
     </div>
   </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+  <main></main>
 </template>
 
 <style>
