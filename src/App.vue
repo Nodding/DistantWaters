@@ -2,6 +2,7 @@
 import TheGame from "./components/TheGame.vue";
 import Phaser from "phaser";
 import Game from "phaser";
+import "./index.css";
 </script>
 
 <template>
@@ -19,7 +20,9 @@ import Game from "phaser";
     </div>
   </header>
 
-  <main></main>
+  <main>
+    <p class="text-3xl text-blue-800 underline">This is some random text</p>
+  </main>
 </template>
 
 <style>

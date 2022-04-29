@@ -4,6 +4,7 @@ import {
   defineCustomElements as defineIonPhaser /* @vite-ignore */,
 } from "@ion-phaser/core/loader";
 import App from "./App.vue";
+import "./index.css";
 
 // Creates app from src/App.vue
 const app = createApp(App);
