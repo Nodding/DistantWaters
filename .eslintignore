@@ -1,0 +1,2 @@
+# Tells the linter to ignore all javascript and css files
+/**/*.js
