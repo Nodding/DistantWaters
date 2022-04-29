@@ -4,6 +4,7 @@
     "johnsoncodehk.vscode-typescript-vue-plugin",
     "github.vscode-pull-request-github",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "csstools.postcss"
   ]
 }
