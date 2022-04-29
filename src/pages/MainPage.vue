@@ -1,14 +1,35 @@
 <script setup lang="ts">
-import MainPage from "./pages/MainPage.vue";
-import "./index.css";
+import TheGame from "../components/TheGame.vue";
+import NavBar from "../components/navbar/NavBar.vue";
+import Phaser from "phaser";
+import Game from "phaser";
+import "../index.css";
 </script>
 
 <template>
-  <MainPage></MainPage>
+  <body class="m-0 p-0 container flex justify-between flex-col">
+    <NavBar></NavBar>
+    <header>
+      <img
+        alt="Our logo"
+        class="logo"
+        src="./assets/ship.svg"
+        width="125"
+        height="125"
+      />
+      <div class="wrapper">
+        <TheGame msg="Look Johnny Boy" />
+      </div>
+    </header>
+
+    <main>
+      <p class="text-3xl text-blue-800 underline">This will be a footnote someday</p>
+    </main>
+  </body>
 </template>
 
 <style>
-@import "./assets/base.css";
+@import "../assets/base.css";
 
 #app {
   max-width: 1280px;
