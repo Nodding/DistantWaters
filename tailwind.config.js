@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin')
+const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   mode: "jit",
@@ -6,5 +6,5 @@ module.exports = {
     "./index.html",
     "./src/**/*.{vue,js,ts}",
     // etc.
-  ]
+  ],
 };

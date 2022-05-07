@@ -23,7 +23,9 @@ import "../index.css";
     </header>
 
     <main>
-      <p class="text-3xl text-blue-800 underline">This will be a footnote someday</p>
+      <p class="text-3xl text-blue-800 underline">
+        This will be a footnote someday
+      </p>
     </main>
   </body>
 </template>

@@ -27,9 +27,15 @@ What you really need to know is that **App.vue** is basically our html body tag.
 
 I am a fan of the Single File Component structure. The majority of the project will be written in the `src/components` folder where components are stored. Each file directly coresponds to a single kind of HTML element.
 
+### Frameworks, Libraries, and Engines
+
 #### Explaining Vue
 
-Having a component library based framework is important due to the ease at which additional libraries can be imported and used. Vue and React are the two most popular ones. I believe Vue is significantly easier to understand than React, and even more Open Source. Vue is the main framework of the frontend of this project. In all technicality, this is a **Vite** app.  [https://vitejs.dev/](Vite) is the tool the Vue uses in order to introduce TypeScript into the environment.
+Having a component library based framework is important due to the ease at which additional libraries can be imported and used. Vue and React are the two most popular ones. I believe Vue is significantly easier to understand than React, and even more Open Source. Vue is the main framework of the frontend of this project. In all technicality, this is a **Vite** app.  [https://vitejs.dev/](Vite) is the tool Vue recommends in order to introduce TypeScript into the environment.
+
+#### Explaining Vuetify
+
+[https://vuetifyjs.com/en/](Vuetify) is a material design framework for the Vue/Vite ecosystems. Acting as both a component library and CSS preprocessor Vuetify is what we chose to generate good looking templates the fastest.
 
 #### Explaining Phaser
 
