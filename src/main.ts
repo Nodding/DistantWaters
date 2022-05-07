@@ -1,4 +1,5 @@
 // import { appendChild } from "parse5/lib/tree-adapters/default";
+import "vuetify/styles";
 import { createApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
@@ -18,4 +19,5 @@ app.use(createPinia());
 app.use(vuetify);
 
 //  Attach the Vue app to the html page
+console.log("Attaching Vue app to the HTML files.");
 app.mount("#app");
