@@ -14,7 +14,7 @@ Additionally this project will only really work in VSCode. The `.vscode` file co
 
 ### Production Chain
 
-In order to open the project in a localhost first navigate to the main directory. First run `npm run lint` to enable ESLinting on any changes, and then run `npm run dev` to start the frontend. The lint command is technichally only required to run when you've made type changes, but it's not a detriment to run it every single time.
+In order to open the project in a localhost first navigate to the main directory. First run `npm run lint` and pay attention to the output. This gives compile time warnings/errors that are usually quite important to the stability and correctness of this project. Next run `npm run dev` to start the frontend. The lint command is technichally only required to run when you've made type changes, but it's not a detriment to run it every single time.
 
 ### Project Structure
 
