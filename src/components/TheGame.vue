@@ -1,4 +1,7 @@
 <script setup lang="ts">
+//  Import statements
+import Phaser from "phaser";
+
 defineProps<{
   msg: string;
 }>();

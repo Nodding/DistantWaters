@@ -1,4 +1,6 @@
-const plugin = require('tailwindcss/plugin')
+/* eslint-disable */
+
+const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   mode: "jit",
@@ -6,5 +8,5 @@ module.exports = {
     "./index.html",
     "./src/**/*.{vue,js,ts}",
     // etc.
-  ]
+  ],
 };

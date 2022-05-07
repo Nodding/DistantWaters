@@ -1,19 +1,23 @@
+// import { appendChild } from "parse5/lib/tree-adapters/default";
+import "vuetify/styles";
 import { createApp } from "vue";
-import { createPinia } from "pinia";
-import {
-  defineCustomElements as defineIonPhaser /* @vite-ignore */,
-} from "@ion-phaser/core/loader";
 import App from "./App.vue";
-import "./index.css";
+import { createPinia } from "pinia";
+import vuetify from "./plugins/vuetify";
+import { loadFonts } from "./plugins/webfontloader";
 
-// Creates app from src/App.vue
+//  Create the app we are going to use
 const app = createApp(App);
 
-// Applies Pinia for use with state management
+//  Load fonts for Vuetify
+loadFonts();
+
+//  Load in Pinia
 app.use(createPinia());
 
-// Define the interface for phaser to start
-defineIonPhaser(window);
+//  Allow the app to use everything vuetify
+app.use(vuetify);
 
-// Binds the main Vue app into the HTML element #app
+//  Attach the Vue app to the html page
+console.log("Attaching Vue app to the HTML files.");
 app.mount("#app");

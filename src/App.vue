@@ -1,71 +1,43 @@
 <script setup lang="ts">
-import MainPage from "./pages/MainPage.vue";
-import "./index.css";
+// import HelloWorld from "./components/HelloWorld.vue";
+import MainPageVue from "./pages/MainPage.vue";
+import AboutPageVue from "./pages/AboutPage.vue";
+// import GamePageVue from "./pages/GamePage.vue";
+import { PageView } from "./stores/mainStore";
+import { ref } from "vue";
+
+//  Set up the map to change the value of the component element in the template
+var pageMap = new Map<PageView, typeof MainPageVue>([
+  [PageView.MainPage, MainPageVue],
+  [PageView.AboutPage, AboutPageVue],
+  // [PageView.GamePage, GamePageVue],
+]);
+
+var currentPage = ref(pageMap.get(PageView.MainPage)); //  Our reactive element that changes with the state and triggers element change
+//  Subscribe to the pina view state
+
+function changePage(newPage: PageView) {
+  console.log("Attempting to change page.");
+  currentPage.value = pageMap.get(newPage); //thingy
+  console.log("Current page is ", currentPage.value?.__file);
+}
 </script>
 
 <template>
-  <MainPage></MainPage>
+  <v-app>
+    <v-app-bar>
+      <v-app-bar-nav-icon />
+      <v-app-bar-title>Distant Waters</v-app-bar-title>
+      <v-btn size="large" @click="changePage(PageView.MainPage)">
+        Home Page
+      </v-btn>
+      <v-btn size="large"> Game </v-btn>
+      <v-btn size="large" @click="changePage(PageView.AboutPage)">
+        About
+      </v-btn>
+    </v-app-bar>
+    <v-main>
+      <component :is="currentPage"> </component>
+    </v-main>
+  </v-app>
 </template>
-
-<style>
-@import "./assets/base.css";
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-}
-</style>
