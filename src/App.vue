@@ -4,7 +4,7 @@ import MainPageVue from "./pages/MainPage.vue";
 import AboutPageVue from "./pages/AboutPage.vue";
 // import GamePageVue from "./pages/GamePage.vue";
 import { PageView } from "./stores/mainStore";
-import { ref } from "vue";
+import { shallowRef } from "vue";
 
 //  Set up the map to change the value of the component element in the template
 var pageMap = new Map<PageView, typeof MainPageVue>([
@@ -13,7 +13,7 @@ var pageMap = new Map<PageView, typeof MainPageVue>([
   // [PageView.GamePage, GamePageVue],
 ]);
 
-var currentPage = ref(pageMap.get(PageView.MainPage)); //  Our reactive element that changes with the state and triggers element change
+var currentPage = shallowRef(pageMap.get(PageView.MainPage)); //  Our reactive element that changes with the state and triggers element change
 //  Subscribe to the pina view state
 
 function changePage(newPage: PageView) {
@@ -28,16 +28,12 @@ function changePage(newPage: PageView) {
     <v-app-bar>
       <v-app-bar-nav-icon />
       <v-app-bar-title>Distant Waters</v-app-bar-title>
-      <v-btn size="large" @click="changePage(PageView.MainPage)">
-        Home Page
-      </v-btn>
-      <v-btn size="large"> Game </v-btn>
-      <v-btn size="large" @click="changePage(PageView.AboutPage)">
-        About
-      </v-btn>
+      <v-tabs>
+        <v-tab @click="changePage(PageView.MainPage)">Home Page</v-tab>
+        <v-tab>Game Page</v-tab>
+        <v-tab @click="changePage(PageView.AboutPage)">About page</v-tab>
+      </v-tabs>
     </v-app-bar>
-    <v-main>
-      <component :is="currentPage"> </component>
-    </v-main>
+    <component :is="currentPage"> </component>
   </v-app>
 </template>
