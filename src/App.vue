@@ -35,5 +35,14 @@ function changePage(newPage: PageView) {
       </v-tabs>
     </v-app-bar>
     <component :is="currentPage"> </component>
+    <v-footer class="bg-blue-grey-darken-4 d-flex justify-space-between">
+      <div class="text-right">Developed by Lucca and Johnny</div>
+      <v-btn
+        href="https://github.com/Nodding/DistantWaters"
+        target="_blank"
+        icon="mdi-github"
+        size="large"
+      />
+    </v-footer>
   </v-app>
 </template>
