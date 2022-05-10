@@ -5,9 +5,14 @@ import App from "./App.vue";
 import { createPinia } from "pinia";
 import vuetify from "./plugins/vuetify";
 import { loadFonts } from "./plugins/webfontloader";
+import { router } from "./routes/Router";
 
 //  Create the app we are going to use
+
 const app = createApp(App);
+
+//  Designate the app to use our router
+app.use(router);
 
 //  Load fonts for Vuetify
 loadFonts();
