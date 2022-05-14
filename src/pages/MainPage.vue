@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<!--
+   File: MainPage.vue
+   Created Date: 05-07-2022
+   Last Modified: Fri May 13 2022
+   ---------------------
+   Authors: John Cinquegrana, Lucca Cioffi
+        Distant Waters
+-->
+<script setup lang="ts">
+import HorizontalDoubleVue from "@/components/HorizontalDouble.vue";
+</script>
 
 <template>
   <v-main class="d-flex flex-column align-stretch">
@@ -10,22 +20,10 @@
     </v-container>
     <v-img src="./src/assets/layered-waves.svg" />
     <v-img src="./src/assets/reverse-waves.svg" />
-    <div class="pa-0 ma-0 w-100" style="background-color: #383e6d">
-      <v-sheet
-        class="d-flex flex-row justify-space-around"
-        style="background-color: #383e6d"
-      >
-        <v-card class="ma-5 pa-5 bg-blue-darken-4">
-          <v-card-title>This is how you play the game</v-card-title>
-          <v-card-subtitle>Oooh how exciting</v-card-subtitle>
-          <v-card-text>Please style me better</v-card-text>
-        </v-card>
-        <v-card class="ma-5 pa-5 bg-blue-darken-4">
-          <v-card-title>More stuff about playing the game</v-card-title>
-          <v-card-subtitle>OMG I really want to play it</v-card-subtitle>
-          <v-card-text>Please style me better</v-card-text>
-        </v-card>
-      </v-sheet>
+    <div class="pa-0 ma-0 w-100" style="background-color: #5965bd">
+      <horizontal-double-vue
+        sheetStyle="background-color: #4d5280"
+      ></horizontal-double-vue>
     </div>
   </v-main>
 </template>
