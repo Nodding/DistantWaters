@@ -1,3 +1,11 @@
+<!--
+   File: TheGame.vue
+   Created Date: 04-28-2022
+   Last Modified: Fri May 13 2022
+   ---------------------
+   Authors: John Cinquegrana, Lucca Cioffi
+        Distant Waters
+-->
 <script setup lang="ts">
 //  Import statements
 import Phaser from "phaser";

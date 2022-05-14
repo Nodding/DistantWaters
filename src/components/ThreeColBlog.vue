@@ -1,3 +1,11 @@
+<!--
+   File: ThreeColBlog.vue
+   Created Date: 05-07-2022
+   Last Modified: Fri May 13 2022
+   ---------------------
+   Authors: John Cinquegrana, Lucca Cioffi
+        Distant Waters
+-->
 <script setup lang="ts">
 interface Props {
   args: {
@@ -52,7 +60,7 @@ const props = defineProps<Props>();
             :value="link"
             :href="link.url"
             target="_blank"
-            active-color=""
+            active-color="none"
           >
             <v-list-item-avatar>
               <v-icon>{{ link.icon }}</v-icon>

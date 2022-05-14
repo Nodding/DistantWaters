@@ -1,3 +1,12 @@
+<!--
+   File: AboutPage.vue
+   Created Date: 05-07-2022
+   Last Modified: Fri May 13 2022
+   ---------------------
+   Authors: John Cinquegrana, Lucca Cioffi
+        Distant Waters
+-->
+
 <script setup lang="ts">
 import ThreeColBlog from "../components/ThreeColBlog.vue";
 

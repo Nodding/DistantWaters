@@ -1,3 +1,11 @@
+/*
+ * File: main.ts
+ * Created Date: 04-27-2022
+ * Last Modified: Fri May 13 2022
+ * ---------------------
+ * Authors: John Cinquegrana, Lucca Cioffi
+ *      Distant Waters
+ */
 // import { appendChild } from "parse5/lib/tree-adapters/default";
 import "vuetify/styles";
 import { createApp } from "vue";
