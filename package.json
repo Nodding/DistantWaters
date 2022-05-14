@@ -1,5 +1,5 @@
 {
-  "name": "distantwatersfrontend",
+  "name": "distant-waters",
   "version": "0.0.0",
   "scripts": {
     "serve": "vite preview",
