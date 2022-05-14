@@ -1,26 +1,66 @@
 <script setup lang="ts">
+interface Props {
+  args: {
+    image: string;
+    description: string[];
+    title: string;
+    subtitle: string;
+    links: {
+      text: string;
+      icon: string;
+      url: string;
+    }[];
+  };
+}
 
-
+const props = defineProps<Props>();
 </script>
 
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12" sm="2">
-        <v-sheet color="white" rounded="lg" min-height="268">
-          hello there
-        </v-sheet>
-      </v-col>
+  <v-row>
+    <!-- left column -->
+    <v-col cols="12" sm="2">
+      <v-sheet color="white" rounded="lg" min-height="268">
+        <v-container class="h-80">
+          <v-img :src="props.args.image" class="rounded-lg h-75" />
+        </v-container>
+      </v-sheet>
+    </v-col>
 
-      <v-col cols="12" sm="8">
-        <v-sheet color="white" min-height="70vh"> column two </v-sheet>
-      </v-col>
+    <!-- Center column -->
+    <v-col cols="12" sm="8">
+      <v-card color="white" min-height="70vh">
+        <v-card-title> {{ props.args.title }} </v-card-title>
+        <v-card-subtitle> {{ props.args.subtitle }} </v-card-subtitle>
+        <v-card-text>
+          <div
+            v-for="(text, index) in props.args.description"
+            :key="index"
+            v-html="text"
+          ></div>
+        </v-card-text>
+      </v-card>
+    </v-col>
 
-      <v-col cols="12" sm="2">
-        <v-sheet color="white" rounded="lg" min-height="268">
-          column three
-        </v-sheet>
-      </v-col>
-    </v-row>
-  </v-container>
+    <!-- Right Column -->
+    <v-col cols="12" sm="2">
+      <v-sheet color="white" rounded="lg" min-height="268">
+        <v-list>
+          <v-list-item
+            v-for="(link, i) in props.args.links"
+            :key="i"
+            :value="link"
+            :href="link.url"
+            target="_blank"
+            active-color=""
+          >
+            <v-list-item-avatar>
+              <v-icon>{{ link.icon }}</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-title v-text="link.text" />
+          </v-list-item>
+        </v-list>
+      </v-sheet>
+    </v-col>
+  </v-row>
 </template>
