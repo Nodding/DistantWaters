@@ -1,3 +1,13 @@
+/*
+   File: createGame.ts
+   Created Date: 05-17-2022
+   Last Modified: Tues May 17 2022
+   Last Mod Note: Added top info, switched to ortho camera for flat look.
+   ---------------------
+   Authors: John Cinquegrana, Lucca Cioffi
+        Distant Waters
+*/
+
 import * as three from "three";
 
 function createGame(id: string) {
@@ -11,11 +21,17 @@ function createGame(id: string) {
 
   //  Configure the settings for the game
   const scene = new three.Scene();
-  const camera = new three.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
+  const aspectRatio = window.innerWidth / window.innerHeight;
+  const cameraWidth = 25;
+  const cameraHeight = cameraWidth / aspectRatio;
+
+  const camera = new three.OrthographicCamera(
+    cameraWidth / -2,
+    cameraWidth / 2,
+    cameraHeight / 2,
+    cameraHeight / -2,
+    0,
+    100
   );
 
   const renderer = new three.WebGLRenderer();
