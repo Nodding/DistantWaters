@@ -2,7 +2,7 @@
    File: createGame.ts
    Created Date: 05-17-2022
    Last Modified: Tues May 17 2022
-   Last Mod Note: Added top info, switched to ortho camera for flat look.
+   Last Mod Note: Added top info, switched to ortho camera for flat look. - Lucca
    ---------------------
    Authors: John Cinquegrana, Lucca Cioffi
         Distant Waters
@@ -21,17 +21,21 @@ function createGame(id: string) {
 
   //  Configure the settings for the game
   const scene = new three.Scene();
+
+  //camera settings (changing camera width is a great way to move the camera around)
   const aspectRatio = window.innerWidth / window.innerHeight;
   const cameraWidth = 25;
   const cameraHeight = cameraWidth / aspectRatio;
 
   const camera = new three.OrthographicCamera(
+    //left
     cameraWidth / -2,
+    //right
     cameraWidth / 2,
+    //top
     cameraHeight / 2,
-    cameraHeight / -2,
-    0,
-    100
+    //bottom
+    cameraHeight / -2
   );
 
   const renderer = new three.WebGLRenderer();
