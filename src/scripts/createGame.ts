@@ -9,7 +9,7 @@ function createGame(id: string) {
     return;
   }
 
-  //  Configure the setting for the game
+  //  Configure the settings for the game
   const scene = new three.Scene();
   const camera = new three.PerspectiveCamera(
     75,
@@ -19,28 +19,33 @@ function createGame(id: string) {
   );
 
   const renderer = new three.WebGLRenderer();
+  //    Set the size of the game
   renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.5);
   gameContainer.appendChild(renderer.domElement);
 
+  //    Create the objects within the game
   const geometry = new three.BoxGeometry();
   const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
   const cube = new three.Mesh(geometry, material);
   scene.add(cube);
 
+  //    Move the camera to the proper location
   camera.position.z = 5;
 
+  //    Define the function which starts the game
   function animate() {
+    //  Set the function we're currently in to the animate callback
     requestAnimationFrame(animate);
 
+    //  Rotate the game
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
 
     renderer.render(scene, camera);
   }
 
+  //    Animate the Game
   animate();
-
-  //  Make the Cube
 }
 
 export { createGame };
