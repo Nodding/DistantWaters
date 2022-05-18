@@ -74,19 +74,20 @@ function createGame(id: string) {
 
     renderer.render(scene, camera);
   }
-
+  //  Mouse click event function
   function onDocumentMouseDown(event) {
     event.preventDefault();
 
     switch (event.which) {
-      case 1: // left mouse click
+      case 1: // ONLY left mouse click
         mouse.x = event.clientX / window.innerWidth;
         mouse.y = -event.clientY / window.innerHeight;
         moveCUBE(mouse);
         break;
     }
   }
-
+  
+  //  Moves cube when called. (BROKEN! NEED TO FIX IT GOING TO 0,0 FIRST BEFORE TRANSLATING)
   function moveCUBE(coord) {
     cube.translateX(-(coord.x / window.innerWidth));
     cube.translateY(coord.y / window.innerHeight);
