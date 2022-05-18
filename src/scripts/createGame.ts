@@ -9,6 +9,7 @@
 */
 
 import * as three from "three";
+import { Vector3 } from "three";
 
 function createGame(id: string) {
   //  Grab the container that will contain the game
@@ -38,16 +39,26 @@ function createGame(id: string) {
     cameraHeight / -2
   );
 
-  const renderer = new three.WebGLRenderer();
+  //  Mouse initialization and listener
+  const mouse = new three.Vector3(0, 0, 0);
+  document.addEventListener("mousedown", onDocumentMouseDown, false);
+
+  //basic green cube
+  const geometry = new three.BoxGeometry();
+  const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
+  const cube = new three.Mesh(geometry, material);
+
   //    Set the size of the game
+  const renderer = new three.WebGLRenderer();
   renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.5);
   gameContainer.appendChild(renderer.domElement);
 
   //    Create the objects within the game
-  const geometry = new three.BoxGeometry();
+  /*const geometry = new three.BoxGeometry();
   const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
   const cube = new three.Mesh(geometry, material);
   scene.add(cube);
+  */
 
   //    Move the camera to the proper location
   camera.position.z = 5;
@@ -62,6 +73,27 @@ function createGame(id: string) {
     cube.rotation.y += 0.01;
 
     renderer.render(scene, camera);
+  }
+
+  function onDocumentMouseDown(event) {
+    event.preventDefault();
+
+    switch (event.which) {
+      case 1: // left mouse click
+        mouse.x = event.clientX / window.innerWidth;
+        mouse.y = -event.clientY / window.innerHeight;
+        moveCUBE(mouse);
+        break;
+    }
+  }
+
+  function moveCUBE(coord) {
+    cube.translateX(-(coord.x / window.innerWidth));
+    cube.translateY(coord.y / window.innerHeight);
+
+    cube.translateX(coord.x);
+    cube.translateY(coord.y);
+    scene.add(cube);
   }
 
   //    Animate the Game
