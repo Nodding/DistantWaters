@@ -9,7 +9,6 @@
 */
 
 import * as three from "three";
-import { Vector3 } from "three";
 
 function createGame(id: string) {
   //  Grab the container that will contain the game
@@ -86,7 +85,7 @@ function createGame(id: string) {
         break;
     }
   }
-  
+
   //  Moves cube when called. (BROKEN! NEED TO FIX IT GOING TO 0,0 FIRST BEFORE TRANSLATING)
   function moveCUBE(coord) {
     cube.translateX(-(coord.x / window.innerWidth));
