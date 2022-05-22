@@ -74,7 +74,7 @@ function createGame(id: string) {
     renderer.render(scene, camera);
   }
   //  Mouse click event function
-  function onDocumentMouseDown(event) {
+  function onDocumentMouseDown(event: MouseEvent) {
     event.preventDefault();
 
     switch (event.which) {
@@ -87,7 +87,7 @@ function createGame(id: string) {
   }
 
   //  Moves cube when called. (BROKEN! NEED TO FIX IT GOING TO 0,0 FIRST BEFORE TRANSLATING)
-  function moveCUBE(coord) {
+  function moveCUBE(coord: three.Vector3) {
     cube.translateX(-(coord.x / window.innerWidth));
     cube.translateY(coord.y / window.innerHeight);
 
