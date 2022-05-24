@@ -12,9 +12,7 @@ import TheGame from "../components/TheGame.vue";
 
 <template>
   <v-main>
-    <v-card>
-      <v-card-title>This is a card title</v-card-title>
-    </v-card>
-    <TheGame msg="Hi Lucca"></TheGame>
+    <TheGame msg="gameHolder"></TheGame>
+    <div></div>
   </v-main>
 </template>
