@@ -57,7 +57,7 @@ async function createGame(id: string) {
   //    Move the camera to the proper location
   camera.position.set(100, 100, -100);
 
-  //  Set the camer to look at the origin
+  //  Set the camera to look at the origin
   camera.lookAt(0, 0, 0);
 
   //  Configure the light for the scene
@@ -75,9 +75,7 @@ async function createGame(id: string) {
   const mouse = new three.Vector3(0, 0, 0);
   document.addEventListener("mousedown", onDocumentMouseDown, false);
 
-  //  Create the boat
-
-  //basic green cube
+  //  Basic green cube
   const geometry = new three.BoxGeometry();
   const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
   const cube = new three.Mesh(geometry, material);
@@ -88,6 +86,11 @@ async function createGame(id: string) {
   const boat = await loadGLTFObject("src/assets/models/pirateship.glb");
   boat.position.set(0, 0, 0);
   scene.add(boat);
+  
+  //  Create object array to check later with a ray
+  const objects = [];
+  objects.push(cube);
+  objects.push(boat);
 
   //    Define the function which starts the game
   function animate() {
@@ -97,32 +100,38 @@ async function createGame(id: string) {
     //  Rotate the game
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
-
     renderer.render(scene, camera);
   }
   //  Mouse click event function
   function onDocumentMouseDown(event: MouseEvent) {
-    event.preventDefault();
+    /* SPAGHETTI broken cube movement code to reference later.
+    mouse.x = event.clientX / window.innerWidth;
+    mouse.y = -event.clientY / window.innerHeight;
+    cube.translateX(-(mouse.x / window.innerWidth));
+    cube.translateY(mouse.y / window.innerHeight);
+    cube.translateX(mouse.x);
+    cube.translateY(mouse.y);
+    scene.add(cube);
+    */
 
-    switch (event.which) {
-      case 1: // ONLY left mouse click
-        mouse.x = event.clientX / window.innerWidth;
-        mouse.y = -event.clientY / window.innerHeight;
-        moveCUBE(mouse);
-        break;
+    //  For creating a ray to find objects added to the objects array.
+    const mouse3D = new three.Vector3( (event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 - 1, 0.5 );
+    const raycaster = new three.Raycaster();
+
+    //  New ray from mouse click position
+    raycaster.setFromCamera(mouse3D, camera);
+
+    //  Will return array of intersecting objects
+    const intersects = raycaster.intersectObjects(objects);
+
+    //  Temporary check if something is actually hit with ray
+    if(intersects.length > 0){
+      console.log("HIT!");
+    }
+    else{
+      console.log("MISS!");
     }
   }
-
-  //  Moves cube when called. (BROKEN! NEED TO FIX IT GOING TO 0,0 FIRST BEFORE TRANSLATING)
-  function moveCUBE(coord: three.Vector3) {
-    cube.translateX(-(coord.x / window.innerWidth));
-    cube.translateY(coord.y / window.innerHeight);
-
-    cube.translateX(coord.x);
-    cube.translateY(coord.y);
-    scene.add(cube);
-  }
-
   //    Animate the Game
   animate();
 }

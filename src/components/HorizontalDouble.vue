@@ -21,9 +21,13 @@ const props = defineProps<Props>();
     class="d-flex flex-row justify-space-around"
     :style="props.sheetStyle"
   >
+    <!-- TODO Need to format this section to be able to add some blurbs on how to play. Right now it all goes on the same line.-->
     <v-card-title>This is how you play the game</v-card-title>
-    <v-card-subtitle>Oooh how exciting</v-card-subtitle>
-    <v-card-text>Please style me better</v-card-text>
+    <v-card-subtitle>Core Concept</v-card-subtitle>
+    <v-card-text>
+      In Distant Waters you and up to three other mates sail the high seas in
+      search of treasure.
+    </v-card-text>
   </v-sheet>
 </template>
 
