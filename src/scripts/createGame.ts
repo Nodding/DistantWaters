@@ -27,6 +27,14 @@ function createGame(id: string) {
   const cameraWidth = 25;
   const cameraHeight = cameraWidth / aspectRatio;
 
+  //    Set the size of the game
+  const renderer = new three.WebGLRenderer();
+  renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.5);
+  gameContainer.appendChild(renderer.domElement);
+
+  //    Create the objects within the game
+
+  //  Create the camera for the scene
   const camera = new three.OrthographicCamera(
     //left
     cameraWidth / -2,
@@ -38,29 +46,23 @@ function createGame(id: string) {
     cameraHeight / -2
   );
 
+  //    Move the camera to the proper location
+  camera.position.z = -5;
+  camera.position.y = 5;
+
+  //  Set the camer to look at the origin
+  camera.lookAt(0, 0, 0);
+
   //  Mouse initialization and listener
   const mouse = new three.Vector3(0, 0, 0);
   document.addEventListener("mousedown", onDocumentMouseDown, false);
+
+  //  Create the boat
 
   //basic green cube
   const geometry = new three.BoxGeometry();
   const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
   const cube = new three.Mesh(geometry, material);
-
-  //    Set the size of the game
-  const renderer = new three.WebGLRenderer();
-  renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.5);
-  gameContainer.appendChild(renderer.domElement);
-
-  //    Create the objects within the game
-  /*const geometry = new three.BoxGeometry();
-  const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
-  const cube = new three.Mesh(geometry, material);
-  scene.add(cube);
-  */
-
-  //    Move the camera to the proper location
-  camera.position.z = 5;
 
   //    Define the function which starts the game
   function animate() {
