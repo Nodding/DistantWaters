@@ -7,6 +7,7 @@
  *      Distant Waters
  */
 
+import * as three from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 /**
@@ -25,4 +26,10 @@ async function loadGLTFObject(path: string): Promise<THREE.Object3D> {
   return result.scene;
 }
 
-export { loadGLTFObject };
+function createHexagon(radius: number, height: number) {
+  const geo = new three.CylinderGeometry(radius, radius, height, 6);
+  const mat = new three.MeshBasicMaterial({ color: 0x080a30 });
+  return new three.Mesh(geo, mat);
+}
+
+export { loadGLTFObject, createHexagon };
