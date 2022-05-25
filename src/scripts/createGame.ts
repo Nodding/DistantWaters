@@ -98,7 +98,7 @@ async function createGame(id: string) {
     return range(
       -70 + ((radius * 2 + 2) * (i % 2)) / 2, //  The starting Z coordinate. it shifts over by half a hex every other iteration
       70,
-      (radius * 2 + 2)
+      radius * 2 + 2
     ).map((z) => {
       return [x, 0, z];
     }); // This will be the Z axis value
