@@ -9,7 +9,8 @@
 */
 
 import * as three from "three";
-import { loadGLTFObject } from "./loadAssets";
+import { range } from "./algorithms";
+import { createHexagon, loadGLTFObject } from "./loadAssets";
 
 async function createGame(id: string) {
   //  Grab the container that will contain the game
@@ -83,6 +84,33 @@ async function createGame(id: string) {
   boat.position.set(0, 0, 0);
   scene.add(boat);
 
+  //  Create and add rectangles to the game
+  //  First I create a line of rectangles along the x axis
+  const radius = 10;
+  const rectArray = range(-70, 70, radius * 2 + 2); //  This will be the Hexagons along the X axis
+  const rectMat = rectArray.map((x, i) => {
+    return range(
+      -70 + ((radius * 2 + 2) * (i % 2)) / 2, //  The starting Z coordinate. it shifts over by half a hex every other iteration
+      70,
+      radius * 2 + 2
+    ).map((z) => {
+      return [x, 0, z];
+    }); // This will be the Z axis value
+  });
+
+  const tilesPos = rectMat.reduce((el1, el2) => el1.concat(el2));
+  const tileObj = tilesPos.map(() => {
+    return createHexagon(radius, 2);
+  });
+
+  tileObj.forEach((tile, index) => {
+    scene.add(tile);
+    tile.position.set(
+      tilesPos[index][0],
+      tilesPos[index][1],
+      tilesPos[index][2]
+    );
+  });
   //  Create object array to check later with a ray
   const objects: three.Object3D[] = [];
   objects.push(cube);
