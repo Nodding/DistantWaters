@@ -64,4 +64,5 @@ type Game = {
   lighthousesUncovered: number;
 };
 
-export type { Game, Player, GoldCard, LighthouseCard, Board, Tile, TileID };
+export type { Game, Player, Board, Tile, TileID };
+export { GoldCard, LighthouseCard };
