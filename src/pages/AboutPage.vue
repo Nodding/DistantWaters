@@ -34,7 +34,7 @@ const JohnData = {
 };
 
 const LuccaData = {
-  image: "./src/assets/luca.jpg",
+  image: "./src/assets/Lucca_better.jpg",
   description: [
     "Hi my name is Lucca, and I am passionate about game design. This game was originally thought up by myself as a board game, and after playing it with my good friend Johnny, he told me later he'd love to make the game playable on a website.",
     "We are both working hard to create a great site to play a hopefully great game!",
