@@ -73,13 +73,6 @@ async function createGame(id: string) {
   sun.position.set(100, 100, 0);
   scene.add(sun);
 
-  //  Basic green cube
-  const geometry = new three.BoxGeometry();
-  const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
-  const cube = new three.Mesh(geometry, material);
-  cube.position.set(0, 0, 0);
-  scene.add(cube);
-
   //  Create the boat
   const boat = await loadGLTFObject("src/assets/models/pirateship.glb");
   boat.position.set(0, 0, 0);
@@ -116,9 +109,6 @@ async function createGame(id: string) {
     //  Set the function we're currently in to the animate callback
     requestAnimationFrame(animate);
 
-    //  Rotate the game
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
 
