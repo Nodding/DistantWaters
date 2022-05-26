@@ -34,12 +34,14 @@ async function createGame(id: string) {
   const cameraHeight = cameraWidth / aspectRatio;
 
   //    Set the size of the game
-  const renderer = new three.WebGLRenderer();
+  const renderer = new three.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth - 200, window.innerHeight * 0.7);
   gameContainer.appendChild(renderer.domElement);
 
   //  Configure Renderer for GLTF objects
   renderer.outputEncoding = three.sRGBEncoding;
+
+  //  Configure misc render properties
 
   //    Create the objects within the game
 
