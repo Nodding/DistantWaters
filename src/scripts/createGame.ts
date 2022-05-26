@@ -11,6 +11,7 @@
 import * as three from "three";
 import { range } from "./algorithms";
 import { createHexagon, loadGLTFObject } from "./loadAssets";
+import { createBoard } from "./objectCreation";
 
 async function createGame(id: string) {
   //  Grab the container that will contain the game
@@ -84,7 +85,7 @@ async function createGame(id: string) {
   boat.position.set(0, 0, 0);
   scene.add(boat);
 
-  //  Create and add rectangles to the game
+  //  Create and add hexagon tiles to the game
   //  First I create a line of rectangles along the x axis
   const radius = 10;
   const rectArray = range(-70, 70, radius * 2 + 2); //  This will be the Hexagons along the X axis
@@ -99,22 +100,16 @@ async function createGame(id: string) {
   });
 
   const tilesPos = rectMat.reduce((el1, el2) => el1.concat(el2));
-  const tileObj = tilesPos.map(() => {
-    return createHexagon(radius, 2);
-  });
 
-  tileObj.forEach((tile, index) => {
-    scene.add(tile);
-    tile.position.set(
-      tilesPos[index][0],
-      tilesPos[index][1],
-      tilesPos[index][2]
-    );
-  });
+  const board = createBoard(tilesPos);
+
   //  Create object array to check later with a ray
-  const objects: three.Object3D[] = [];
-  objects.push(cube);
-  objects.push(boat);
+  const tileList = board.map((tile) => {
+    const hex = createHexagon(radius, 2);
+    scene.add(hex);
+    hex.position.set(tile.worldX, tile.worldY, tile.worldZ);
+    return hex;
+  });
 
   //    Define the function which starts the game
   function animate() {
@@ -142,11 +137,18 @@ async function createGame(id: string) {
     raycaster.setFromCamera(mouse3D, camera);
 
     //  Will return array of intersecting objects
-    const intersects = raycaster.intersectObjects(objects);
+    const intersects = raycaster.intersectObjects(tileList);
 
     //  Temporary check if something is actually hit with ray
     if (intersects.length > 0) {
-      console.log("HIT!");
+      const firstObject = intersects[0].object;
+      console.log(
+        "Hit tile %d at position %d, %d, %d",
+        firstObject.id,
+        firstObject.position.x,
+        firstObject.position.y,
+        firstObject.position.z
+      );
     } else {
       console.log("MISS!");
     }
