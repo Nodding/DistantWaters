@@ -71,10 +71,6 @@ async function createGame(id: string) {
   sun.position.set(100, 100, 0);
   scene.add(sun);
 
-  //  Mouse initialization and listener
-  const mouse = new three.Vector3(0, 0, 0);
-  document.addEventListener("mousedown", onDocumentMouseDown, false);
-
   //  Basic green cube
   const geometry = new three.BoxGeometry();
   const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
@@ -86,9 +82,9 @@ async function createGame(id: string) {
   const boat = await loadGLTFObject("src/assets/models/pirateship.glb");
   boat.position.set(0, 0, 0);
   scene.add(boat);
-  
+
   //  Create object array to check later with a ray
-  const objects = [];
+  const objects: three.Object3D[] = [];
   objects.push(cube);
   objects.push(boat);
 
@@ -102,20 +98,16 @@ async function createGame(id: string) {
     cube.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
-  //  Mouse click event function
-  function onDocumentMouseDown(event: MouseEvent) {
-    /* SPAGHETTI broken cube movement code to reference later.
-    mouse.x = event.clientX / window.innerWidth;
-    mouse.y = -event.clientY / window.innerHeight;
-    cube.translateX(-(mouse.x / window.innerWidth));
-    cube.translateY(mouse.y / window.innerHeight);
-    cube.translateX(mouse.x);
-    cube.translateY(mouse.y);
-    scene.add(cube);
-    */
 
-    //  For creating a ray to find objects added to the objects array.
-    const mouse3D = new three.Vector3( (event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 - 1, 0.5 );
+  //  Add mouse click event
+  renderer.domElement.onclick = function onGameClick(ev: MouseEvent) {
+    //  Offset gets element local coordinates
+    const mouse3D = new three.Vector3(
+      (ev.offsetX / renderer.domElement.width) * 2 - 1,
+      -(ev.offsetY / renderer.domElement.height) * 2 + 1,
+      0.5
+    );
+    console.log("X proportion %f and Y proportion %f.", mouse3D.x, mouse3D.y);
     const raycaster = new three.Raycaster();
 
     //  New ray from mouse click position
@@ -125,14 +117,14 @@ async function createGame(id: string) {
     const intersects = raycaster.intersectObjects(objects);
 
     //  Temporary check if something is actually hit with ray
-    if(intersects.length > 0){
+    if (intersects.length > 0) {
       console.log("HIT!");
-    }
-    else{
+    } else {
       console.log("MISS!");
     }
-  }
-  //    Animate the Game
+  };
+
+  //  Animate the Game
   animate();
 }
 
