@@ -7,7 +7,7 @@
         Distant Waters
 -->
 <script setup lang="ts">
-import HorizontalDoubleVue from "@/components/HorizontalDouble.vue";
+import HorizontalSheet from "../components/HorizontalSheet.vue";
 </script>
 
 <template>
@@ -20,10 +20,32 @@ import HorizontalDoubleVue from "@/components/HorizontalDouble.vue";
     </v-container>
     <v-img src="./src/assets/layered-waves.svg" />
     <v-img src="./src/assets/reverse-waves.svg" />
-    <div class="pa-0 ma-0 w-100" style="background-color: #5965bd">
-      <horizontal-double-vue
-        sheetStyle="background-color: #4d5280"
-      ></horizontal-double-vue>
+    <!-- Background div just to change the background color -->
+    <div
+      class="pa-0 ma-0 w-100 d-flex flex-row align-center justify-center"
+      style="background-color: #5965bd"
+    >
+      <v-container
+        class="h-auto w-auto mx-5 mb-5 pa-5 d-flex flex-row align-center justify-center"
+        style="max-width: 60%"
+      >
+        <horizontal-sheet>
+          <v-card>
+            <v-card-title>Left Card</v-card-title>
+            <v-card-text
+              >Hey look at me I'm supposed to be different but I'm basically
+              entirely the same.</v-card-text
+            >
+          </v-card>
+          <v-card>
+            <v-card-title>Title</v-card-title>
+            <v-card-text
+              >This is the text of the card that showcases how people are very
+              good at playing the game.</v-card-text
+            >
+          </v-card>
+        </horizontal-sheet>
+      </v-container>
     </div>
   </v-main>
 </template>
