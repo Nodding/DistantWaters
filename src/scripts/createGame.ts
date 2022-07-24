@@ -10,7 +10,7 @@
 
 import * as three from "three";
 import { loadGLTFObject } from "./loadAssets";
-import { createAxialSystem, getTileObjects } from "./tiles";
+import { createAxialSystem, getTileObjects, type Axial } from "./tiles";
 
 async function createGame(id: string) {
   //  Grab the container that will contain the game
@@ -97,6 +97,12 @@ async function createGame(id: string) {
   );
   //  Add those objects to the scene
   tileList.forEach((el) => scene.add(el));
+
+  //  Create a map from each tileID to the axial coordinates for that tile
+  const tileRecord: Record<number, Axial> = {};
+  tileList.forEach((el, index) => {
+    tileRecord[el.id] = tilesCoordinates[index];
+  });
 
   //  Define the function which starts the game
   function animate() {

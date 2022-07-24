@@ -82,4 +82,4 @@ function getTileObjects(
   });
 }
 
-export { getTileObjects, createAxialSystem };
+export { getTileObjects, createAxialSystem, type Axial };
