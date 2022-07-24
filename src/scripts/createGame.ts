@@ -45,7 +45,7 @@ async function createGame(id: string) {
   //  Create the objects within the game
 
   //  Create the camera for the scene
-  const cameraScale = 0.2;
+  const cameraScale = 0.4;
   const camera = new three.OrthographicCamera(
     //left
     cameraWidth / -cameraScale,
@@ -82,11 +82,11 @@ async function createGame(id: string) {
   scene.add(localUserBoat);
 
   //  Create and add hexagon tiles to the game
-  //  First I create a line of rectangles along the x axis
-  const drawRadius = 10; //  How large the rectangles will actually be drawn on the screen
-  const distanceRadius = 10.5; //  How far apart the rectangles will be from each other
+  //  First I create a line of hexagons along the x axis
+  const drawRadius = 5; //  How large the hexagons will actually be drawn on the screen
+  const distanceRadius = 5.3; //  How far apart the hexagons will be from each other
   //  Get the positions for all of the tiles
-  const tilesPos = getTilePositions(distanceRadius);
+  const tilesPos = getTilePositions(distanceRadius, -50, 50, -50, 50);
   //  Place renderable objects at each of those positions
   const tileList = tilesPos.map((pos) => placeNewTile(drawRadius, 0, pos));
   //  Add those objects to the scene
