@@ -10,6 +10,9 @@
 import * as three from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
+//  Offset from Blender scale to our local scale
+const scaleOffset: [number, number, number] = [0.2, 0.2, 0.2];
+
 /**
  * Given a path to a file containing a 3D model, returns the model as an Object3D.
  * This is the superclass of all 3D objects in three.js
@@ -21,9 +24,11 @@ async function loadGLTFObject(path: string): Promise<THREE.Object3D> {
   const loader = new GLTFLoader();
 
   //    Wait for the result that we need in order to load in the objects
-  const result = await loader.loadAsync(path);
-
-  return result.scene;
+  return loader.loadAsync(path).then((result) => {
+    //  After getting the result, return the scene inside of it
+    result.scene.scale.set(...scaleOffset);
+    return result.scene;
+  });
 }
 
 function createHexagon(radius: number, height: number) {
