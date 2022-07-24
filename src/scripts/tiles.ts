@@ -56,8 +56,8 @@ function getTileObjects(
   function AxialToWorldCoords(size: number, coord: Axial): WorldCoord {
     return [
       size * (Math.sqrt(3) * coord[0] + (Math.sqrt(3) / 2) * coord[1]),
-      size * ((3 / 2) * coord[1]),
       0,
+      size * ((3 / 2) * coord[1])
     ];
   }
   return coords.map((axialCoordinate) => {
