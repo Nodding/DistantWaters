@@ -45,7 +45,7 @@ async function createGame(id: string) {
   //  Create the objects within the game
 
   //  Create the camera for the scene
-  const cameraScale = 0.1;
+  const cameraScale = 0.2;
   const camera = new three.OrthographicCamera(
     //left
     cameraWidth / -cameraScale,
@@ -58,7 +58,7 @@ async function createGame(id: string) {
   );
 
   //    Move the camera to the proper location
-  camera.position.set(100, 100, -100);
+  camera.position.set(70, 70, -70);
 
   //  Set the camera to look at the origin
   camera.lookAt(0, 0, 0);
@@ -75,9 +75,11 @@ async function createGame(id: string) {
   scene.add(sun);
 
   //  Create the boat
-  const boat = await loadGLTFObject("src/assets/models/pirateship.glb");
-  boat.position.set(0, 0, 0);
-  scene.add(boat);
+  const localUserBoat = await loadGLTFObject(
+    "src/assets/models/pirateship.glb"
+  );
+  localUserBoat.position.set(0, 0, 0);
+  scene.add(localUserBoat);
 
   //  Create and add hexagon tiles to the game
   //  First I create a line of rectangles along the x axis
@@ -85,13 +87,12 @@ async function createGame(id: string) {
   const distanceRadius = 10.5; //  How far apart the rectangles will be from each other
   //  Get the positions for all of the tiles
   const tilesPos = getTilePositions(distanceRadius);
-
+  //  Place renderable objects at each of those positions
   const tileList = tilesPos.map((pos) => placeNewTile(drawRadius, 0, pos));
-
-  //  Create object array to check later with a ray
+  //  Add those objects to the scene
   tileList.forEach((el) => scene.add(el));
 
-  //    Define the function which starts the game
+  //  Define the function which starts the game
   function animate() {
     //  Set the function we're currently in to the animate callback
     requestAnimationFrame(animate);
