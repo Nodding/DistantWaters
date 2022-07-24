@@ -112,6 +112,18 @@ async function createGame(id: string) {
     renderer.render(scene, camera);
   }
 
+  function tileClicked(id: number) {
+    //  Test to see if this was actually a tile that was clicked
+    if (tileRecord[id] === undefined) {
+      //  This was not a tile
+      return;
+    } else {
+      //  TODO print out the cube coordinates that we hit
+      console.log(`Tile with id ${id} at cube coordinates q: and r: p:`);
+      //  TODO move the boat onto the tile
+    }
+  }
+
   //  Add mouse click event
   renderer.domElement.onclick = function onGameClick(ev: MouseEvent) {
     //  Offset gets element local coordinates
