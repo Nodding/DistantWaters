@@ -9,9 +9,8 @@
 */
 
 import * as three from "three";
-import { range } from "./algorithms";
-import { createHexagon, loadGLTFObject } from "./loadAssets";
-import { createBoard } from "./objectCreation";
+import { loadGLTFObject } from "./loadAssets";
+import { getTilePositions, placeNewTile } from "./tiles";
 
 async function createGame(id: string) {
   //  Grab the container that will contain the game
@@ -28,12 +27,12 @@ async function createGame(id: string) {
   //  Set scene background to a sky blue
   scene.background = new three.Color(0x83d8e6);
 
-  //camera settings (changing camera width is a great way to move the camera around)
+  //  camera settings (changing camera width is a great way to move the camera around)
   const aspectRatio = window.innerWidth / window.innerHeight;
   const cameraWidth = 25;
   const cameraHeight = cameraWidth / aspectRatio;
 
-  //    Set the size of the game
+  //  Set the size of the game
   const renderer = new three.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth - 200, window.innerHeight * 0.7);
   gameContainer.appendChild(renderer.domElement);
@@ -43,7 +42,7 @@ async function createGame(id: string) {
 
   //  Configure misc render properties
 
-  //    Create the objects within the game
+  //  Create the objects within the game
 
   //  Create the camera for the scene
   const cameraScale = 0.1;
@@ -82,29 +81,15 @@ async function createGame(id: string) {
 
   //  Create and add hexagon tiles to the game
   //  First I create a line of rectangles along the x axis
-  const radius = 10;
-  const rectArray = range(-70, 70, radius * 2 + 2); //  This will be the Hexagons along the X axis
-  const rectMat = rectArray.map((x, i) => {
-    return range(
-      -70 + ((radius * 2 + 2) * (i % 2)) / 2, //  The starting Z coordinate. it shifts over by half a hex every other iteration
-      70,
-      radius * 2 + 2
-    ).map((z) => {
-      return [x, 0, z];
-    }); // This will be the Z axis value
-  });
+  const drawRadius = 10; //  How large the rectangles will actually be drawn on the screen
+  const distanceRadius = 10.5; //  How far apart the rectangles will be from each other
+  //  Get the positions for all of the tiles
+  const tilesPos = getTilePositions(distanceRadius);
 
-  const tilesPos = rectMat.reduce((el1, el2) => el1.concat(el2));
-
-  const board = createBoard(tilesPos);
+  const tileList = tilesPos.map((pos) => placeNewTile(drawRadius, 0, pos));
 
   //  Create object array to check later with a ray
-  const tileList = board.map((tile) => {
-    const hex = createHexagon(radius, 2);
-    scene.add(hex);
-    hex.position.set(tile.worldX, tile.worldY, tile.worldZ);
-    return hex;
-  });
+  tileList.forEach((el) => scene.add(el));
 
   //    Define the function which starts the game
   function animate() {
