@@ -86,13 +86,14 @@ async function createGame(id: string) {
   const drawRadius = 5; //  How large the hexagons will actually be drawn on the screen
   const distanceRadius = 5.3; //  How far apart the hexagons will be from each other
   //  Get the positions for all of the tiles
-  const tilesCoordinates = createAxialSystem(5, 5);
+  const tilesCoordinates = createAxialSystem(7, 8);
   //  Place renderable objects at each of those positions
   const tileList = getTileObjects(
     drawRadius,
     0,
     distanceRadius,
-    tilesCoordinates
+    tilesCoordinates,
+    [-30, 0, -30]
   );
   //  Add those objects to the scene
   tileList.forEach((el) => scene.add(el));

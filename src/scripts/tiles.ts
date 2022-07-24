@@ -51,13 +51,15 @@ function getTileObjects(
   drawRadius: number,
   height: number,
   distanceRadius: number,
-  coords: Axial[]
+  coords: Axial[],
+  topLeft: WorldCoord
 ): TileObj[] {
   function AxialToWorldCoords(size: number, coord: Axial): WorldCoord {
     return [
-      size * (Math.sqrt(3) * coord[0] + (Math.sqrt(3) / 2) * coord[1]),
-      0,
-      size * ((3 / 2) * coord[1]),
+      topLeft[0] +
+        size * (Math.sqrt(3) * coord[0] + (Math.sqrt(3) / 2) * coord[1]),
+      topLeft[1] + 0,
+      topLeft[2] + size * ((3 / 2) * coord[1]),
     ];
   }
   return coords.map((axialCoordinate) => {
