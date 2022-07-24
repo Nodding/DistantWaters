@@ -83,7 +83,12 @@ function createAxialSystem(boardWidth: number, boardHeight: number): Axial[] {
   return flatMat.map(offsetToAxial);
 }
 
-function getTileObjects(coords: Axial[]): TileObj[] {
+function getTileObjects(
+  drawRadius: number,
+  height: number,
+  distanceRadius: number,
+  coords: Axial[]
+): TileObj[] {
   function AxialToWorldCoords(size: number, coord: Axial): WorldCoord {
     return [
       size * (Math.sqrt(3) * coord[0] + (Math.sqrt(3) / 2) * coord[1]),
@@ -91,6 +96,13 @@ function getTileObjects(coords: Axial[]): TileObj[] {
       0,
     ];
   }
+  return coords.map((axialCoordinate) => {
+    const hexaTile = createHexagon(drawRadius, height);
+    hexaTile.position.set(
+      ...AxialToWorldCoords(distanceRadius, axialCoordinate)
+    );
+    return hexaTile;
+  });
 }
 
 /**
@@ -106,4 +118,4 @@ function placeNewTile(radius: number, height: number, position: Vector3) {
   return hexagon;
 }
 
-export { getTilePositions, placeNewTile };
+export { getTilePositions, placeNewTile, getTileObjects, createAxialSystem };
