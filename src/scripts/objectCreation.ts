@@ -7,21 +7,20 @@
  *      Distant Waters
  */
 
+import type { Vector3 } from "three";
 import { GoldCard, type Board, type Tile } from "./gameTypes";
 
-function createBoard(tilesPos: number[][]): Board {
+function createBoard(tilesPos: Vector3[]): Board {
   return tilesPos.map((pos) => {
     return createTile(pos);
   });
 }
 
-function createTile(pos: number[]): Tile {
+function createTile(pos: Vector3): Tile {
   return {
     explored: false,
     card: new GoldCard(100),
-    worldX: pos[0],
-    worldY: pos[1],
-    worldZ: pos[2],
+    position: pos,
     neighbors: [],
   };
 }

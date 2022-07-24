@@ -7,6 +7,8 @@
  *      Distant Waters
  */
 
+import type { Vector3 } from "three/src/Three";
+
 abstract class Card {
   title: string;
   description: string;
@@ -41,9 +43,7 @@ class LighthouseCard extends Card {
 type Tile = {
   explored: boolean;
   card: Card;
-  worldX: number;
-  worldY: number;
-  worldZ: number;
+  position: Vector3;
   neighbors: TileID[];
 };
 
