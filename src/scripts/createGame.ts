@@ -10,7 +10,7 @@
 
 import * as three from "three";
 import { loadGLTFObject } from "./loadAssets";
-import { getTilePositions, placeNewTile } from "./tiles";
+import { createAxialSystem, getTileObjects } from "./tiles";
 
 async function createGame(id: string) {
   //  Grab the container that will contain the game
@@ -86,9 +86,14 @@ async function createGame(id: string) {
   const drawRadius = 5; //  How large the hexagons will actually be drawn on the screen
   const distanceRadius = 5.3; //  How far apart the hexagons will be from each other
   //  Get the positions for all of the tiles
-  const tilesPos = getTilePositions(distanceRadius, -50, 50, -50, 50);
+  const tilesCoordinates = createAxialSystem(5, 5);
   //  Place renderable objects at each of those positions
-  const tileList = tilesPos.map((pos) => placeNewTile(drawRadius, 0, pos));
+  const tileList = getTileObjects(
+    drawRadius,
+    0,
+    distanceRadius,
+    tilesCoordinates
+  );
   //  Add those objects to the scene
   tileList.forEach((el) => scene.add(el));
 
