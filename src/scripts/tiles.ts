@@ -47,6 +47,17 @@ function createAxialSystem(boardWidth: number, boardHeight: number): Axial[] {
   return flatMat.map(offsetToAxial);
 }
 
+/**
+ * Creates a list of tile objects that can be used by threeJS as renderable objects.
+ * The order of the list is preserved with the input list.
+ * @param drawRadius How big the hexagons shoudld be drawn
+ * @param height How tall/thick the hexagons will be
+ * @param distanceRadius How far apart the hexagons will be from each other
+ * @param coords The axial coordinates of the hexagons to be created
+ * @param topLeft The starting point from which the grid of hexagons will emanate
+ * @returns An in-order list of ThreeJS Tile objects that can be added to the
+ * main scene to render the tiles for the game
+ */
 function getTileObjects(
   drawRadius: number,
   height: number,
